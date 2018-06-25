@@ -1,27 +1,172 @@
 <!DOCTYPE html>
-<html lang ="en us">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<html lang="en">
+	<head>
+		<title>Music bands</title>
+		
+      	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	</head>
+	
+	<body>
 
-    <title>Project 1 - Group 6</title>
+		      <header>
+        <div class="navbar-fixed">
+          <nav class="grey darken-3">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+            <div class="nav-wrapper container">
+              <a href="/" class="brand-logo"><img src="images/someLogo.png" id="logo"></a>
+              <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+              <ul class="right hide-on-med-and-down">
+                <li><a href="#part 1">part 1</a></li>
+                <li><a href="#part 2">part 2</a></li>
+                <li><a href="#part 3">part 3</a></li>
+                <li><a href="#part 4">part 4</a></li>
+                <a class="waves-effect waves-light btn amber" href="/login">Login</a> 
+              </ul>
+              
+              <ul class="side-nav" id="mobile-demo">
+                <li><a href="#part 1">part 1</a></li>
+                <li><a href="#part 2">part 2</a></li>
+                <li><a href="#part 3">part 3</a></li>
+                <li><a href="#part 4">part 4</a></li>
+                <a class="waves-effect waves-light btn amber" href="/login">Login</a>
+              </ul>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-</head>
+            </div>
+          </nav>
+        </div>
+       </header>
+      <main>
+        <section>
+          <a id="home"></a>
+          <a id="hero-image"></a>
+          <div class="row hero grey darken-3"style="height: 620px;">
+              <h1>Home page</h1>
+          </div>
+        </section>
 
-<body>
+        <section>          
+          <div class="row " style="height: 200px;">
+                <p>Some text</p>
+          </div>
+        </section>
 
-<p>Hello World</p>  
-<h1>Hello World</h1>
+        <section>
+          <a id="part 1"></a>
+          <div class="row part 1 grey darken-2 white-text"style="height: 620px;">
+                <h1>Page1</h1>
+                <h1>Page1</h1>
+                <h1>Page1</h1>
+          </div>
+          
+        </section>
 
+        <section>          
+            <div class="row " style="height: 200px;">
+                <p>Some text</p>
+            </div>
+        </section>
 
+        <section>
+            <a id="part 2"></a>
+            <div class="row part 1 grey darken-2 white-text"style="height: 620px;">
+                    <h1>Page 2</h1>
+                    <h1>Page 2</h1>
+                    <h1>Page 2</h1>
+            </div>
+        </section>
+
+        <section>          
+            <div class="row " style="height: 200px;">
+                    <p>Some text</p>
+            </div>
+        </section>
+
+        <section>
+            <a id="part 3"></a>
+            <div class="row part 1 grey darken-2 white-text"style="height: 620px;">
+                    <h1>Page 3</h1>
+                    <h1>Page 3</h1>
+                    <h1>Page 3</h1>
+            </div>
+        </section>
+
+        <section>          
+            <div class="row " style="height: 200px;">
+                    <p>Some text</p>
+            </div>
+        </section>
+
+        <section>
+            <a id="part 4"></a>
+            <div class="row part 1 grey darken-2 white-text"style="height: 620px;">
+                    <h1>Page 4</h1>
+                    <h1>Page 4</h1>
+                    <h1>Page 4</h1>
+            </div>
+        </section>
+
+        
+      </main>      
+      <footer class="page-footer grey darken-4">
+          <div class="container">
+            <div class="row">
+              <div class="col s4 l4">
+                <h5 class="white-text"></h5>
+                  <p class="grey-text text-lighten-4"></p>
+              </div>
+              <div class="col s4 l4">
+                <h5 class="white-text"></h5>
+                  <p class="grey-text text-lighten-4"></p>
+              </div>
+              <div class="col l4 s4">
+                <h5 class="white-text"></h5>
+                <ul>
+                  <li><a class="grey-text text-lighten-3" href=""></a></li>
+                  <li><a class="grey-text text-lighten-3" href=""></a></li>
+                  <li><a class="grey-text text-lighten-3" href=""></a></li>
+                  <li><a class="grey-text text-lighten-3" href=""></a></li>
+                  <li><a class="grey-text text-lighten-3" href=""></a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright black">
+            <div class="container">
+           
+            <a class="grey-text text-lighten-4 right" href="#modal1"><i class="lock material-icons tiny"></i></a>
+            
+            
+            </div>
+          </div>
+      </footer>       
+     
+        <script>
+        	// Add smooth scrolling to all links in navbar + footer link
+		    $("nav a, a[href='#home']").on('click', function(event) {
+		        // Make sure this.hash has a value before overriding default behavior
+		        if (this.hash !== "") {
+		            // Prevent default anchor click behavior
+		            event.preventDefault();
+		            // Store hash
+		            var hash = this.hash;
+		            // Using jQuery's animate() method to add smooth page scroll
+		            // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+		            $('html, body').animate({
+		                scrollTop: $(hash).offset().top
+		            }, 500, function() {
+
+		                // Add hash (#) to URL when done scrolling (default click behavior)
+		                window.part3.hash = hash;
+
+		                						
+		            });
+		        }
+		    });
+		    
+        </script>  
     
-    <script src="main.js"></script>
-
-    <h1>Hello World</h1>
-
-</body>
+            	
+	</body>
 </html>
