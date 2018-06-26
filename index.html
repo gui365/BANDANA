@@ -1,172 +1,139 @@
 <!DOCTYPE html>
-<html lang="en">
-	<head>
-		<title>Music bands</title>
-		
-      	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	</head>
-	
-	<body>
-
-		      <header>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Bandana</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+            
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/main.css" />
+   
+</head>
+<body>
+    <header>
         <div class="navbar-fixed">
-          <nav class="grey darken-3">
-
-            <div class="nav-wrapper container">
-              <a href="/" class="brand-logo"><img src="images/someLogo.png" id="logo"></a>
-              <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-              <ul class="right hide-on-med-and-down">
-                <li><a href="#part 1">part 1</a></li>
-                <li><a href="#part 2">part 2</a></li>
-                <li><a href="#part 3">part 3</a></li>
-                <li><a href="#part 4">part 4</a></li>
-                <a class="waves-effect waves-light btn amber" href="/login">Login</a> 
-              </ul>
-              
-              <ul class="side-nav" id="mobile-demo">
-                <li><a href="#part 1">part 1</a></li>
-                <li><a href="#part 2">part 2</a></li>
-                <li><a href="#part 3">part 3</a></li>
-                <li><a href="#part 4">part 4</a></li>
+            <nav class="grey darken-3">
+                <div class="nav-wrapper container">
+                  <a href="#!" class="brand-logo">Logo</a>
+                  <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+                  <ul class="right hide-on-med-and-down">
+                    <li><a href="sass.html">Sass</a></li>
+                    <li><a href="badges.html">Components</a></li>
+                    <li><a href="collapsible.html">Javascript</a></li>
+                    <li><a href="mobile.html">Mobile</a></li>
+                    <a class="waves-effect waves-light btn amber" href="/login">Login</a>
+                  </ul>
+                </div>
+              </nav>
+            
+              <ul class="sidenav" id="mobile-demo">
+                <li><a href="sass.html">Sass</a></li>
+                <li><a href="badges.html">Components</a></li>
+                <li><a href="collapsible.html">Javascript</a></li>
+                <li><a href="mobile.html">Mobile</a></li>
                 <a class="waves-effect waves-light btn amber" href="/login">Login</a>
               </ul>
-
             </div>
-          </nav>
-        </div>
-       </header>
-      <main>
-        <section>
-          <a id="home"></a>
-          <a id="hero-image"></a>
-          <div class="row hero grey darken-3"style="height: 620px;">
-              <h1>Home page</h1>
-          </div>
-        </section>
+    </header>
 
-        <section>          
-          <div class="row " style="height: 200px;">
-                <p>Some text</p>
-          </div>
-        </section>
-
-        <section>
-          <a id="part 1"></a>
-          <div class="row part 1 grey darken-2 white-text"style="height: 620px;">
-                <h1>Page1</h1>
-                <h1>Page1</h1>
-                <h1>Page1</h1>
-          </div>
+    <video autoplay muted loop id="myVideo">
+            <source src="assets/video/videoplayback.mp4" type="video/mp4">
+            
+    </video>
           
-        </section>
-
-        <section>          
-            <div class="row " style="height: 200px;">
-                <p>Some text</p>
-            </div>
-        </section>
-
-        <section>
-            <a id="part 2"></a>
-            <div class="row part 1 grey darken-2 white-text"style="height: 620px;">
-                    <h1>Page 2</h1>
-                    <h1>Page 2</h1>
-                    <h1>Page 2</h1>
-            </div>
-        </section>
-
-        <section>          
-            <div class="row " style="height: 200px;">
-                    <p>Some text</p>
-            </div>
-        </section>
-
-        <section>
-            <a id="part 3"></a>
-            <div class="row part 1 grey darken-2 white-text"style="height: 620px;">
-                    <h1>Page 3</h1>
-                    <h1>Page 3</h1>
-                    <h1>Page 3</h1>
-            </div>
-        </section>
-
-        <section>          
-            <div class="row " style="height: 200px;">
-                    <p>Some text</p>
-            </div>
-        </section>
-
-        <section>
-            <a id="part 4"></a>
-            <div class="row part 1 grey darken-2 white-text"style="height: 620px;">
-                    <h1>Page 4</h1>
-                    <h1>Page 4</h1>
-                    <h1>Page 4</h1>
-            </div>
-        </section>
-
-        
-      </main>      
-      <footer class="page-footer grey darken-4">
-          <div class="container">
-            <div class="row">
-              <div class="col s4 l4">
-                <h5 class="white-text"></h5>
-                  <p class="grey-text text-lighten-4"></p>
-              </div>
-              <div class="col s4 l4">
-                <h5 class="white-text"></h5>
-                  <p class="grey-text text-lighten-4"></p>
-              </div>
-              <div class="col l4 s4">
-                <h5 class="white-text"></h5>
-                <ul>
-                  <li><a class="grey-text text-lighten-3" href=""></a></li>
-                  <li><a class="grey-text text-lighten-3" href=""></a></li>
-                  <li><a class="grey-text text-lighten-3" href=""></a></li>
-                  <li><a class="grey-text text-lighten-3" href=""></a></li>
-                  <li><a class="grey-text text-lighten-3" href=""></a></li>
-                </ul>
-              </div>
-            </div>
+          <!-- Optional: some overlay text to describe the video -->
+          <div class="content">
+            <h1>Heading</h1>
+            <p>Lorem ipsum...</p>
+            
+            <!-- Use a button to pause/play the video with JavaScript -->
+            <button id="myBtn" onclick="myFunction()">Pause</button>
           </div>
-          <div class="footer-copyright black">
+
+    <section>
+
+    </section>
+
+
+    <section>
+
+    </section>
+
+
+    <section>
+
+    </section>
+
+         
+    <footer class="page-footer grey darken-4">
             <div class="container">
-           
-            <a class="grey-text text-lighten-4 right" href="#modal1"><i class="lock material-icons tiny"></i></a>
-            
-            
+              <div class="row">
+                <!-- <div class="col l6 s12">
+                  <h5 class="white-text">Footer Content</h5>
+                  <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+                </div> -->
+                <!-- <div class="col l4 offset-l2 s12">
+                  <h5 class="white-text">Links</h5>
+                  <ul>
+                    <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+                  </ul>
+                </div> -->
+              </div>
             </div>
-          </div>
-      </footer>       
-     
-        <script>
-        	// Add smooth scrolling to all links in navbar + footer link
-		    $("nav a, a[href='#home']").on('click', function(event) {
-		        // Make sure this.hash has a value before overriding default behavior
-		        if (this.hash !== "") {
-		            // Prevent default anchor click behavior
-		            event.preventDefault();
-		            // Store hash
-		            var hash = this.hash;
-		            // Using jQuery's animate() method to add smooth page scroll
-		            // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
-		            $('html, body').animate({
-		                scrollTop: $(hash).offset().top
-		            }, 500, function() {
+            <div class="footer-copyright">
+              <div class="container">
+              © 2014 Copyright Text
+              <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+              </div>
+            </div>
+          </footer>
+          
+    <script>
+            var video = document.getElementById("myVideo");
+            var btn = document.getElementById("myBtn");
+            
+            function myFunction() {
+              if (video.paused) {
+                video.play();
+                btn.innerHTML = "Pause";
+              } else {
+                video.pause();
+                btn.innerHTML = "Play";
+              }
+            }
+            </script>
 
-		                // Add hash (#) to URL when done scrolling (default click behavior)
-		                window.part3.hash = hash;
+<!-- <script>
+        // Add smooth scrolling to all links in navbar + footer link
+        $("nav a, a[href='#home']").on('click', function(event) {
+            // Make sure this.hash has a value before overriding default behavior
+            if (this.hash !== "") {
+                // Prevent default anchor click behavior
+                event.preventDefault();
+                // Store hash
+                var hash = this.hash;
+                // Using jQuery's animate() method to add smooth page scroll
+                // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+                $('html, body').animate({
+                    scrollTop: $(hash).offset().top
+                }, 500, function() {
 
-		                						
-		            });
-		        }
-		    });
-		    
-        </script>  
-    
-            	
-	</body>
+                    // Add hash (#) to URL when done scrolling (default click behavior)
+                    window.location.hash = hash;
+
+                                            
+                });
+            }
+        });
+        
+    </script>   -->
+            
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+<script src="assets/javascript/main.js"></script>
+</body>
 </html>
