@@ -1,41 +1,156 @@
-/* Style the video: 100% width and height to cover the entire window */
-#myVideo {
+
+.fullscreen-bg {
+    position: fixed;
+    z-index: -100;
+    -webkit-filter: drop-shadow(32px 32px 32px rgba(0,0,0,0.9));
+  filter: drop-shadow(32px 32px 20px rgba(0,0,0,0.9));
+}
+#fullscreen-bg__video {
     position: fixed;
     right: 0;
     bottom: 0;
     min-width: 100%; 
     min-height: 100%;
+    -webkit-filter: drop-shadow(32px 32px 32px rgba(0,0,0,0.9));
+  filter: drop-shadow(32px 32px 20px rgba(0,0,0,0.9));
+}
+#wrapper{
+    position: relative;
+    height:auto;
+    background-color: rgb(104, 103, 100);
+    margin-right: 0;
+    margin-left: 0;
+}
+#search{
+    background-color: darkslategray;
+    /* color:white; */
+    height: 95%;
+    width: 95%;
+    margin: 5%;
+    text-align: center
+}
+.form-control{
+    width: 500px;
+}
+#home{
+    height:670px;
+    
+  
 }
 
-/* Add some content at the bottom of the video/page */
-.content {
-    position: fixed;
+.card-body{
+    align-content: center;
+}
+
+.button {
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 250px;
+    height: 42px;
+    cursor: I-beam;
+    top: 0;
+    right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    color: #f1f1f1;
-    width: 100%;
-    padding: 300px;
-}
-
-/* Style the button used to pause/play the video */
-#myBtn {
-    width: 200px;
-    font-size: 18px;
-    padding: 10px;
+    left: 0;
+    padding: 0 20px;
+    overflow: hidden;
     border: none;
-    background: #000;
-    color: #fff;
+    -webkit-border-radius: 21px;
+    border-radius:10px;
+    font: normal 20px/normal "Antic", Helvetica, sans-serif;
+    color: rgba(140, 140, 140, 1);
+    text-decoration: normal;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    background: rgba(40, 40, 40, 0.4);
+    -webkit-box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.5) inset;
+    box-shadow: 1px 1px 2px 0 rgba(0, 0, 0, 0.5) inset;
+    -webkit-transition: all 502ms cubic-bezier(0.68, -0.75, 0.265, 1.75);
+    -moz-transition: all 502ms cubic-bezier(0.68, -0.75, 0.265, 1.75);
+    -o-transition: all 502ms cubic-bezier(0.68, -0.75, 0.265, 1.75);
+    transition: all 502ms cubic-bezier(0.68, -0.75, 0.265, 1.75);
+  }
+  
+  .button:hover {
+    width: 350px;
+    opacity: 0.82;
+    color: rgba(181, 181, 181, 1);
+    background: rgba(0, 0, 0, 0.4);
+    -webkit-transition: all 500ms cubic-bezier(0.68, -0.75, 0.265, 1.75);
+    -moz-transition: all 500ms cubic-bezier(0.68, -0.75, 0.265, 1.75);
+    -o-transition: all 500ms cubic-bezier(0.68, -0.75, 0.265, 1.75);
+    transition: all 500ms cubic-bezier(0.68, -0.75, 0.265, 1.75);
+  }
+  
+  .button:focus {
+    width: 490px;
+    cursor: default;
+    padding: -13px 20px 0;
+    color: rgba(255, 255, 255, 1);
+    -webkit-transition: all 601ms cubic-bezier(0.68, -0.75, 0.265, 1.75);
+    -moz-transition: all 601ms cubic-bezier(0.68, -0.75, 0.265, 1.75);
+    -o-transition: all 601ms cubic-bezier(0.68, -0.75, 0.265, 1.75);
+    transition: all 601ms cubic-bezier(0.68, -0.75, 0.265, 1.75);
+  }
+  
+  .text {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    border: none;
+    font: normal 25px/1 "amaranth", Helvetica, sans-serif;
+    color: rgb(25, 196, 226)fff;
+    text-align: center;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  
+  input:focus {
+    outline: none;
+  }
+  
+  body {
+    background-image: url("https://i.redd.it/3lxlwac0rfmx.png");
+     background-attachment: fixed;
+  }
+
+  .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
     cursor: pointer;
-}
-
-#myBtn:hover {
-    background: #ddd;
-    color: black;
-}
-
-.page-footer{
-    position:absolute;
-    bottom:0;
-    width:100%;
-    height:90px;
 }
