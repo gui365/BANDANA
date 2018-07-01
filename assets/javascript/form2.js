@@ -1,31 +1,3 @@
-// Get the modal
-function modal(){
-var modal = document.getElementById('myModal');
-
-// Get the button that opens the modal
-var btn = document.getElementById("search-btn");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks the button, open the modal 
-btn.onclick = function() {
-    modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
-}
-
 // VIDEO VIDEO VIDEO
 var video = document.getElementById("fullscreen-bg__video");
 
@@ -146,7 +118,6 @@ function searchBandana() {
       if (response) {
         promiseEventsStatus = true;
         events.push(response);
-        // console.log(events);
       };
       // Only when both promises came back, generate the cards
       if (promiseArtistStatus === true && promiseEventsStatus === true) {
@@ -155,7 +126,7 @@ function searchBandana() {
     });
   }
 
-  function generateCards() {
+   function generateCards() {
 
     // *** ARTIST INFORMATION ***
       // Dynamically creating the card
@@ -289,7 +260,6 @@ $("#search-btn").on("click", function(event) {
         artistLetterArray.splice(i, 1, "%27C");
         artistInput = artistLetterArray.join("");
       }
-   
     };
       
       
@@ -326,14 +296,9 @@ $("#search-btn").on("click", function(event) {
       artistImage = sv.artistImage;
       function doTheThing(){
       // add recent seach div with "recent-search"
-      var cardDiv = $("<div class='card' style='width: 10rem; position: relative'>");
+      var cardDiv = $("<div class='card' style='width: 10rem; float:left;'>");
       var cardImg = $("<img class='card-img-top'>").attr("src", artistImage);
       var cardBody = $("<div class='card-body d-flex justify-content-between' style='padding: 0.5rem; width: 100%; position: absolute; bottom: 0;'>");
-      // if (artistFB !== "") {
-      //   var cardFB = $("<a href='"+ artistFB +"' target='_blank'><img src='fb_logo.png' style='width: 30px'></a>");
-      // } else {
-      //   var cardFB = $("<div>");
-      // };
       var cardName = $("<h6 class='card-title' style='margin: 0; font-weight: bold; background-color: rgba(255, 208, 0, 0.5); color: black; padding: 0.5rem 1rem; border-radius: 10px;'>").text(artistName);
       // Append the new artist content
       cardBody.append(cardName);
@@ -341,7 +306,7 @@ $("#search-btn").on("click", function(event) {
         $("#recent-search").append(cardDiv);
         count ++;
       };
-  // console.log(num.children) 
+
   doTheThing();
 }, function(errorObject) {
   console.log("Errors handled: " + errorObject.code);
