@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-us" id="top">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,9 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="assets/images/favicon.png" sizes="16x16" type="image/png">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">    
+    <link href="https://fonts.googleapis.com/css?family=Oswald:400,700|Roboto:400,700" rel="stylesheet">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/main.css" />
     <script src="assets/vex/vex-docs/vex.combined.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/vex/vex-docs/vex.css" />
     <link rel="stylesheet" href="assets/vex/vex-docs/vex-theme-flat-attack.css" />
     <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
@@ -18,27 +19,24 @@
 </head>
 <body>
     <header>
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-                    <a class="navbar-brand" href="#">
-                            <img src="assets/images/logo.png" width="300"  alt="">
-                          </a>
-
+            <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+                    <img src="assets/images/logo.png" style="width: 300px; margin: 0.5rem;" alt="BANDANA logo">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                       <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                       <ul class="navbar-nav">
                         <li class="nav-item active">
-                          <a class="nav-link" href="#home">Home <span class="sr-only">(current)</span></a>
+                          <a class="nav-link" href="#top"><i class="fas fa-home"></i> Home<span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="#wrapper">Search</a>
+                          <a class="nav-link" href="#wrapper"><i class="fas fa-search"></i> Search</a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="#">Pricing</a>
+                          <a class="nav-link" onclick="enterAPIKeys()"><i class="fas fa-wrench"></i> Settings</a>
                         </li>
                       </ul>
-                      <button type="button" class="btn btn-info">LOGIN</button>
+                      <!-- <button type="button" class="btn btn-info">LOGIN</button> -->
                     </div>
                   </nav>
     </header>
@@ -50,18 +48,24 @@
     </div>
   
     <section>
-            <br><br><br><br>
             <div class="jumbotron position-relative" id="home" style="background:transparent; margin-bottom: 0px;color: white;text-shadow: black 0.3em 0.3em 0.3em;">
                 <div class="row">
-                    <div class="col-lg-4">
-                        <img src="assets/images/play.png" class="img-rounded" id="myBtn" onclick="myFunction()" width="200" height="200" alt="">
-                           
+                    <div class="col-lg-3">
+                        
                     </div>
-                    <div class="col-lg-8">
+                    <div class="col-lg-9">
                         <div class="page-header">
-                            <h2> There are many variations of passages of Lorem Ipsum available </h2>
-                            <p> <h2> <small> There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.  </small> </h2> </p>
+                            <h2 style="color: rgb(0, 217, 255)">Welcome to BANDANA! The best site to keep current with your favorite bands</h2>
+                            <h2><small>Find out where and when you can see your next concert</small></h2>
+                            <p style="text-shadow: none"><small><i style="color: rgb(255, 196, 0);" class="fas fa-exclamation-triangle"></i> Psst! Make sure you enter your API keys in the 'Settings' section before you search.</small></p>
                         </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-10">
+                    </div>
+                    <div class="col-lg-2">
+                        <i id="btn-video" class="far fa-pause-circle fa-3x" onclick="videoController()"></i>
                     </div>
                 </div>
             </div>
@@ -69,46 +73,55 @@
 
 
     <section>
-       <div class="row justify-content-center" id = "wrapper">
-            <div class="jumbotron justify-content-center" id="search" >
-                <h1 class="display-4" style="font-family: 'Gloria Hallelujah', cursive;color:#00FFFF;">Bandana Search!</h1>
-                
-                            <div class="card-body">
-                                <form role="form">
-                                    <div class="form-group">
-                                        <input class="button" type="text" placeholder="Artist..." id="artist-input" required  />
-                                    </div>
-                                    <div class="form-group">
-                                        <input class="button" type="text" placeholder="Location..." id="location-input"/>
-                                    </div>
-                                    <div class="form-group">
-                                        <input class="button" type="text" placeholder="Start Date(MM/DD/YY)..." id="start-date-input"/>
-                                    </div>
-                                    <div class="form-group">
-                                        <input class="button" type="text" placeholder="End Date(MM/DD/YY)..." id="end-date-input"/>
-                                    </div>
-                    
-                                <button type="button" class="btn btn-info" id="search-btn">
-                                    <span class="glyphicon glyphicon-search"></span> Search
-                                </button>
-                                </form>
+       <div class="row " id = "wrapper">
+            <div class="jumbotron" id="search" >
+                <div style="margin: 0;" class="section-title">
+                    <img src="assets/images/favicon.png" style="width: 40px; height: 40px; margin-right: 1rem;" alt="Guitar circle">
+                    <h3 style="color: rgb(255, 196, 0); margin: 0;">What are you looking for?</h3>
+                </div>
+                    <div class="card-body">
+                        <form role="form">
+                            <div class="form-group">
+                                <input class="button" type="text" placeholder="Artist" id="artist-input" required/>
                             </div>
+                            <div class="form-group">
+                                <input class="button" type="text" placeholder="Location" id="location-input"/>
+                            </div>
+                            <div class="form-group">
+                                <input class="button" type="text" placeholder="From (MM/DD/YY)" id="start-date-input"/><br>
+                            </div>
+                            <div class="form-group">
+                                <input class="button" type="text" placeholder="To (MM/DD/YY)" id="end-date-input"/>
+                            </div>
+            
+                        <button type="button" class="btn btn-info" id="search-btn">
+                            <span class="glyphicon glyphicon-search"></span> Search
+                        </button>
+                        </form>
+                    </div>
                      
                 <!--Building Cards-->
-                <div class="row">
-                        <div class="col-lg-3" id="artist-holder"></div>
-                            <div class="col-lg-9" id="events-holder"slyle="float:left;"></div>
-                    </div>    
-                    <div class="d-flex justify-content-between" id="recent-search"></div>    
+                <div  class="row">
+                    <div style="padding: 0;" class="col-lg-3" id="artist-holder"></div>
+                    <div style="padding: 0;" class="col-lg-9" id="events-holder"slyle="float:left;"></div>
+                </div>
+                <div class="section-title">
+                    <img src="assets/images/favicon.png" style="width: 40px; height: 40px; margin-right: 1rem;" alt="Guitar circle">
+                    <h3 style="color: rgb(255, 196, 0); margin: 0;">Recent searches</h3>
+                </div>
+                <div style="padding: 20px;" class="d-flex justify-content-between" id="recent-search"></div>    
             </div>           
         </div>   
     </section>
 
+    <div id="go-up">
+        <a style="color: white;" href="#search" title="TOP"><i class="fas fa-chevron-up"></i></a>
+    </div>
          
     <nav class="navbar fluid navbar-dark bg-dark relative-bottom" id ="footer">
-            <span class="navbar-text">
-              Navbar text with an inline element
-            </span>
+            <small style="color: rgb(255, 255, 255);" class="navbar-text">
+              Copyright &copy; 2018
+            </small>
           </nav>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -117,6 +130,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 <script src='https://use.edgefonts.net/amaranth.js'></script>
-<script src="assets/javascript/form2.js"></script>
+<script src="assets/javascript/main.js"></script>
 </body>
 </html>
