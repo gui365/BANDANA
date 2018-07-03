@@ -81,6 +81,8 @@ vex.defaultOptions.className = 'vex-theme-flat-attack';
 function searchBandana() {
   eventIndex = 0;
   events.length = 0;
+  eventsByLocation.length = 0;
+  $("#five-more").remove();
 
     $.ajax({
       url: queryURLArtist,
@@ -89,21 +91,31 @@ function searchBandana() {
       console.log(response);
 
       // If the band exists and we get a promise back, save the values in global variables
-      if (response) {
+      if (localStorage.getItem("keyBands") === "" || localStorage.getItem("keyBands") === "false" ||
+          localStorage.getItem("keyMaps") === "" || localStorage.getItem("keyMaps") === "false" ||
+          localStorage.getItem("keyFirebase") === "" || localStorage.getItem("keyFirebase") === "false") {
+        console.log(true);
+        
+            vex.dialog.alert("Please set up your API keys under 'Settings'");
+      } else if (response) {
         promiseArtistStatus = true;
         artistName = response.name;
         artistFB = response.facebook_page_url;
         artistImage = response.image_url;
-        database.ref().push({
-          artistName: artistName,
-          artistImage: artistImage,
-          dateAdded: firebase.database.ServerValue.TIMESTAMP
+        
+        firebase.database().ref().orderByChild("artistName").equalTo(artistName).on("value", function(snapshot){
+          if(snapshot.val() === null){
+          database.ref().push({
+            artistName: artistName,
+            artistImage: artistImage,
+            dateAdded: firebase.database.ServerValue.TIMESTAMP}
+          )};
+        // else register artistname in database
         });
       
       // Else let the user know the artist name couldn't be found
-      } else {
+    } else {
         vex.dialog.alert("Sorry, not artist found");
-
       };
 
       // Only when both promises came back, generate the cards
@@ -156,20 +168,20 @@ function searchBandana() {
       
       for (let i = 0; i < 10; i++) {
         
-        var eventDiv = $("<div style='background-color: rgba(255,255,255,0.5);' class='card d-flex flex-row flex-nowrap search-results '>");
+        var eventDiv = $("<div class='card d-flex flex-row flex-nowrap search-results event-div'>");
         var eventColumn1 = $("<div class='col-lg-6 position-relative'>");
         var eventColumn2 = $("<div class='col-lg-6 d-flex justify-content-center align-middle'>");
-        eventColumn1.append("<p class='position-absolute' style='left: 15vw; font-weight: 700; font-size: 7rem; color: rgba(200, 200, 200, 0.4);'>" + (eventIndex+1) + "</p>")
-        var eventDate = $("<p>" + moment(events[0][i].datetime).format("MMMM D YYYY, h:mm A") + "</p>");
-        var eventLocation = $("<p>" + events[0][i].venue.city + " " + events[0][i].venue.region + " " + events[0][i].venue.country + "</p>");
-        var eventVenue = $("<p>" + events[0][i].venue.name + "</p>");
-        var eventURL = $("<a href='" + events[0][i].url + "' target='_blank'><p> Get tickets</p></a>");
-        var eventMap = $("<a href='https://www.google.com/maps/place/" + events[0][i].venue.latitude + "," + events[0][i].venue.longitude + "' target='_blank'><img src='https://maps.googleapis.com/maps/api/staticmap?center=" + events[0][i].venue.latitude + "," + events[0][i].venue.longitude + "&zoom=14&size=350x200&maptype=roadmap&markers=color:red%7Clabel:C%7C" + events[0][i].venue.latitude + "," + events[0][i].venue.longitude + "&key=" + localStorage.getItem("keyMaps") + "'></a>");
+        eventColumn1.append("<p class='position-absolute event-index'>" + (eventIndex+1) + "</p>")
+        var eventDate = $("<p class='event-date'>" + moment(events[0][i].datetime).format("MMMM D YYYY, h:mm A") + "</p>");
+        var eventLocation = $("<p class='event-location'>" + events[0][i].venue.city + " " + events[0][i].venue.region + " " + events[0][i].venue.country + "</p>");
+        var eventVenue = $("<p class='event-venue'>" + events[0][i].venue.name + "</p>");
+        var eventURL = $("<a class='event-tickets' href='" + events[0][i].url + "' target='_blank'><i class='fas fa-ticket-alt'></i> Get tickets</a>");
+        var eventMap = $("<a href='https://www.google.com/maps/place/" + events[0][i].venue.latitude + "," + events[0][i].venue.longitude + "' target='_blank'><img style='border-radius: 5px;' src='https://maps.googleapis.com/maps/api/staticmap?center=" + events[0][i].venue.latitude + "," + events[0][i].venue.longitude + "&zoom=14&size=350x200&maptype=roadmap&markers=color:red%7Clabel:C%7C" + events[0][i].venue.latitude + "," + events[0][i].venue.longitude + "&key='" + localStorage.getItem("keyMaps") +"'></a>");
         eventColumn1.append(eventDate, eventLocation, eventVenue, eventURL);
         eventColumn2.append(eventMap);
         eventDiv.append(eventColumn1, eventColumn2);
         $("#events-holder").append(eventDiv);
-  
+
         eventIndex++;
       };
         
@@ -191,23 +203,23 @@ function searchBandana() {
         $("#events-holder").empty();
         
         for (let i = 0; i < 10; i++) {
-          var eventDiv = $("<div class='card d-flex flex-nowrap search-results'>");
-          var eventColumn1 = $("<div class='col-lg-6'>");
-          var eventColumn2 = $("<div class='col-lg-6'>");
-          eventColumn1.append("<p>" + (eventIndex+1) + "</p>")
-          var eventDate = $("<p>" + moment(eventsByLocation[i].datetime).format("MMMM D YYYY, h:mm A") + "</p>");
-          var eventLocation = $("<p>" + eventsByLocation[i].venue.city + " " + eventsByLocation[i].venue.region + " " + eventsByLocation[i].venue.country + "</p>");
-          var eventVenue = $("<p>" + eventsByLocation[i].venue.name + "</p>");
-          var eventURL = $("<a href='" + eventsByLocation[i].url + "' target='_blank'><p> Get tickets</p></a>");
-          var eventMap = $("<a href='https://www.google.com/maps/place/" + eventsByLocation[i].venue.latitude + "," + eventsByLocation[i].venue.longitude + "' target='_blank'><img src='https://maps.googleapis.com/maps/api/staticmap?center=" + eventsByLocation[i].venue.latitude + "," + eventsByLocation[i].venue.longitude + "&zoom=14&size=400x150&maptype=roadmap&markers=color:red%7Clabel:C%7C" + eventsByLocation[i].venue.latitude + "," + eventsByLocation[i].venue.longitude + "&key=AIzaSyDqItaMC7jRXipvTmfaH3bzfBiCxHNflr0'></a>");          
+          var eventDiv = $("<div class='card d-flex flex-row flex-nowrap search-results event-div'>");
+          var eventColumn1 = $("<div class='col-lg-6 position-relative'>");
+          var eventColumn2 = $("<div class='col-lg-6 d-flex justify-content-center align-middle'>");
+          eventColumn1.append("<p class='position-absolute event-index'>" + (eventIndex+1) + "</p>")
+          var eventDate = $("<p class='event-date'>" + moment(eventsByLocation[i].datetime).format("MMMM D YYYY, h:mm A") + "</p>");
+          var eventLocation = $("<p class='event-location'>" + eventsByLocation[i].venue.city + " " + eventsByLocation[i].venue.region + " " + eventsByLocation[i].venue.country + "</p>");
+          var eventVenue = $("<p class='event-venue'>" + eventsByLocation[i].venue.name + "</p>");
+          var eventURL = $("<a class='event-tickets' href='" + eventsByLocation[i].url + "' target='_blank'><i class='fas fa-ticket-alt'></i> Get tickets</a>");
+          var eventMap = $("<a href='https://www.google.com/maps/place/" + eventsByLocation[i].venue.latitude + "," + eventsByLocation[i].venue.longitude + "' target='_blank'><img style='border-radius: 5px;' src='https://maps.googleapis.com/maps/api/staticmap?center=" + eventsByLocation[i].venue.latitude + "," + eventsByLocation[i].venue.longitude + "&zoom=14&size=350x200&maptype=roadmap&markers=color:red%7Clabel:C%7C" + eventsByLocation[i].venue.latitude + "," + eventsByLocation[i].venue.longitude + "&key='" + localStorage.getItem("keyMaps") +"'></a>");
           eventColumn1.append(eventDate, eventLocation, eventVenue, eventURL);
           eventColumn2.append(eventMap);
           eventDiv.append(eventColumn1, eventColumn2);
           $("#events-holder").append(eventDiv);
-  
+          
           eventIndex++;
         };
-        $("#events-holder").prepend("<button class='btn btn-danger' onclick='generateFiveMore()'>Show 5+</button>");
+        $("#events-holder").prepend("<button id='five-more' class='btn btn-danger' onclick='generateFiveMore()'>+5</button>");
   
       } else {
         $("#events-holder").empty();
@@ -219,19 +231,20 @@ function searchBandana() {
 function generateFiveMore() {
   for (let i = eventIndex; i < (eventIndex + 5); i++) {
     
-    var eventDiv = $("<div class='card d-flex flex-nowrap search-results'>");
-    var eventColumn1 = $("<div class='col-lg-6'>");
-    var eventColumn2 = $("<div class='col-lg-6'>");
-    eventColumn1.append("<p>" + (i+1) + "</p>")
-    var eventDate = $("<p>" + moment(events[0][i].datetime).format("MMMM D YYYY, h:mm A") + "</p>");
-    var eventLocation = $("<p>" + events[0][i].venue.city + " " + events[0][i].venue.region + " " + events[0][i].venue.country + "</p>");
-    var eventVenue = $("<p>" + events[0][i].venue.name + "</p>");
-    var eventURL = $("<a href='" + events[0][i].url + "' target='_blank'><p> Get tickets</p></a>");
-    var eventMap = $("<a href='https://www.google.com/maps/place/" + events[0][i].venue.latitude + "," + events[0][i].venue.longitude + "' target='_blank'><img src='https://maps.googleapis.com/maps/api/staticmap?center=" + events[0][i].venue.latitude + "," + events[0][i].venue.longitude + "&zoom=14&size=400x150&maptype=roadmap&markers=color:red%7Clabel:C%7C" + events[0][i].venue.latitude + "," + events[0][i].venue.longitude + "&key=AIzaSyDqItaMC7jRXipvTmfaH3bzfBiCxHNflr0'></a>");    
+    var eventDiv = $("<div class='card d-flex flex-row flex-nowrap search-results event-div'>");
+    var eventColumn1 = $("<div class='col-lg-6 position-relative'>");
+    var eventColumn2 = $("<div class='col-lg-6 d-flex justify-content-center align-middle'>");
+    eventColumn1.append("<p class='position-absolute event-index'>" + (i+1) + "</p>")
+    var eventDate = $("<p class='event-date'>" + moment(events[0][i].datetime).format("MMMM D YYYY, h:mm A") + "</p>");
+    var eventLocation = $("<p class='event-location'>" + events[0][i].venue.city + " " + events[0][i].venue.region + " " + events[0][i].venue.country + "</p>");
+    var eventVenue = $("<p class='event-venue'>" + events[0][i].venue.name + "</p>");
+    var eventURL = $("<a class='event-tickets' href='" + events[0][i].url + "' target='_blank'><i class='fas fa-ticket-alt'></i> Get tickets</a>");
+    var eventMap = $("<a href='https://www.google.com/maps/place/" + events[0][i].venue.latitude + "," + events[0][i].venue.longitude + "' target='_blank'><img style='border-radius: 5px;' src='https://maps.googleapis.com/maps/api/staticmap?center=" + events[0][i].venue.latitude + "," + events[0][i].venue.longitude + "&zoom=14&size=350x200&maptype=roadmap&markers=color:red%7Clabel:C%7C" + events[0][i].venue.latitude + "," + events[0][i].venue.longitude + "&key='" + localStorage.getItem("keyMaps") +"'></a>");
     eventColumn1.append(eventDate, eventLocation, eventVenue, eventURL);
     eventColumn2.append(eventMap);
     eventDiv.append(eventColumn1, eventColumn2);
     $("#events-holder").append(eventDiv);
+    console.log(eventIndex);
   };
   eventIndex += 5;
 }
@@ -285,11 +298,13 @@ function validation() {
         queryURLEvents = queryURLTemplate + artistInput + "/events?date=" + moment(startDateInput).format("YYYY-MM-DD") + "," + moment(endDateInput).format("YYYY-MM-DD") + "&app_id=" + localStorage.getItem("keyBands");
       }
 
+      eventIndex = 0;
+      $("events-holder").empty();
       searchBandana();
-      $("#artist-input").val("");
-      $("#location-input").val("");
-      $("#start-date-input").val("");
-      $("#end-date-input").val("");
+      // $("#artist-input").val("");
+      // $("#location-input").val("");
+      // $("#start-date-input").val("");
+      // $("#end-date-input").val("");
     };
 }
 
@@ -318,7 +333,6 @@ $("#search-btn").on("click", function() {
       cardBody.append(cardName);
       cardDiv.append(cardImg, cardBody);
         $("#recent-search").append(cardDiv);
-        count ++;
       };
 
   doTheThing();
@@ -330,8 +344,10 @@ $("#search-btn").on("click", function() {
 function scrollToSearch() {
   if (document.body.scrollTop > 1000 || document.documentElement.scrollTop > 1000) {
       $("#go-up").css("display", "flex");
+      $("#five-more").css("display", "flex");
   } else {
       $("#go-up").css("display", "none");
+      $("#five-more").css("display", "none");
   };
 };
 
