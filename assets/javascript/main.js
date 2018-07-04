@@ -91,18 +91,13 @@ function searchBandana() {
       console.log(response);
 
       // If the band exists and we get a promise back, save the values in global variables
-      if (localStorage.getItem("keyBands") === "" || localStorage.getItem("keyBands") === "false" ||
-          localStorage.getItem("keyMaps") === "" || localStorage.getItem("keyMaps") === "false" ||
-          localStorage.getItem("keyFirebase") === "" || localStorage.getItem("keyFirebase") === "false") {
-        console.log(true);
-        
-            vex.dialog.alert("Please set up your API keys under 'Settings'");
-      } else if (response) {
+      if (response) {
         promiseArtistStatus = true;
         artistName = response.name;
         artistFB = response.facebook_page_url;
         artistImage = response.image_url;
-        
+
+        // If artistName does not exist in Firebase, save it in the database
         firebase.database().ref().orderByChild("artistName").equalTo(artistName).on("value", function(snapshot){
           if(snapshot.val() === null){
           database.ref().push({
@@ -110,7 +105,6 @@ function searchBandana() {
             artistImage: artistImage,
             dateAdded: firebase.database.ServerValue.TIMESTAMP}
           )};
-        // else register artistname in database
         });
       
       // Else let the user know the artist name couldn't be found
