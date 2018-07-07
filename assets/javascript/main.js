@@ -205,7 +205,7 @@ function searchBandana() {
           var eventLocation = $("<p class='event-location'>" + eventsByLocation[i].venue.city + " " + eventsByLocation[i].venue.region + " " + eventsByLocation[i].venue.country + "</p>");
           var eventVenue = $("<p class='event-venue'>" + eventsByLocation[i].venue.name + "</p>");
           var eventURL = $("<a class='event-tickets' href='" + eventsByLocation[i].url + "' target='_blank'><i class='fas fa-ticket-alt'></i> Get tickets</a>");
-          var eventMap = $("<a href='https://www.google.com/maps/place/" + eventsByLocation[i].venue.latitude + "," + eventsByLocation[i].venue.longitude + "' target='_blank'><img style='border-radius: 5px;' src='https://maps.googleapis.com/maps/api/staticmap?center=" + eventsByLocation[i].venue.latitude + "," + eventsByLocation[i].venue.longitude + "&zoom=14&size=350x200&maptype=roadmap&markers=color:red%7Clabel:C%7C" + eventsByLocation[i].venue.latitude + "," + eventsByLocation[i].venue.longitude + "&key='" + localStorage.getItem("keyMaps") +"'></a>");
+          var eventMap = $("<a href='https://www.google.com/maps/place/" + eventsByLocation[i].venue.latitude + "," + eventsByLocation[i].venue.longitude + "' target='_blank'><img style='border-radius: 5px;' src='https://maps.googleapis.com/maps/api/staticmap?center=" + eventsByLocation[i].venue.latitude + "," + eventsByLocation[i].venue.longitude + "&zoom=14&size=350x200&maptype=roadmap&markers=color:red%7Clabel:C%7C" + eventsByLocation[i].venue.latitude + "," + eventsByLocation[i].venue.longitude + "&key=" + localStorage.getItem("keyMaps") +"'></a>");
           eventColumn1.append(eventDate, eventLocation, eventVenue, eventURL);
           eventColumn2.append(eventMap);
           eventDiv.append(eventColumn1, eventColumn2);
